@@ -2,8 +2,8 @@ cmake_minimum_required (VERSION 3.0.2)
 project (gpio)
 
 set (CMAKE_CXX_STANDARD 11)
-set (CMAKE_C_FLAGS "-pthread")
-set (CMAKE_CXX_FLAGS "-pthread")
+set (CMAKE_C_FLAGS "-pthread -O0")
+set (CMAKE_CXX_FLAGS "-pthread -O0")
 
 # Base project
 file(GLOB_RECURSE SOURCES "src/*.cpp")
@@ -18,4 +18,5 @@ list(REMOVE_DUPLICATES INCLUDE_DIRS)
 
 include_directories(${INCLUDE_DIRS})
 
-add_executable (gpio ${SOURCES})
+add_library (gpio ${SOURCES})
+target_include_directories (gpio PUBLIC ${INCLUDE_DIRS})
