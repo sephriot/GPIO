@@ -6,10 +6,10 @@ set (CMAKE_C_FLAGS "-pthread -O0")
 set (CMAKE_CXX_FLAGS "-pthread -O0")
 
 # Base project
-file(GLOB_RECURSE SOURCES "src/*.cpp")
-file(GLOB_RECURSE HEADERS "include/*.h")
+file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_LIST_DIR}/src/*.cpp")
+file(GLOB_RECURSE HEADERS "${CMAKE_CURRENT_LIST_DIR}/include/*.h")
 
-set (INCLUDE_DIRS "include")
+set (INCLUDE_DIRS "${CMAKE_CURRENT_LIST_DIR}/include")
 foreach (headerFile ${HEADERS})
     get_filename_component(dir ${headerFile} PATH)
     list (APPEND INCLUDE_DIRS ${dir})
