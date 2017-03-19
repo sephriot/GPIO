@@ -45,9 +45,7 @@ bool GPIO::clean()
 
 GPIO::~GPIO()
 {
-    if (!clean()) {
-        throw GPIO::exception("Cannot deinitialize GPIO: " + std::to_string(gpio_));
-    }
+    clean();
 }
 
 void GPIO::set_direction(const GPIO::Direction& direction)
