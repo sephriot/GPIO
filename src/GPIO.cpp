@@ -125,6 +125,7 @@ int GPIO::get_gpio_num() const noexcept
 
 void GPIO::set_gpio_num(int gpio) {
 
+    gpio_ = gpio;
     is_open_ = setup();
 
     if (!is_open_) {
@@ -134,6 +135,20 @@ void GPIO::set_gpio_num(int gpio) {
     set_direction(direction_);
 
 }
+
+void GPIO::reset(int gpio, const GPIO::Direction& direction)
+{
+    gpio_ = gpio;
+    if (gpio_ != -1) {
+        clean();
+        is_open_ = setup();
+        if (!is_open_) {
+            throw GPIO::exception("Cannot initialize GPIO: " + std::to_string(gpio_));
+        }
+        set_direction(direction);
+    }
+}
+
 
 GPIO::exception::exception(const std::string& msg)
     :

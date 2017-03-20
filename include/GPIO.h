@@ -22,6 +22,7 @@ public:
     int get_value();
     int get_gpio_num() const noexcept;
     void set_gpio_num(int gpio);
+    void reset(int gpio = -1, const GPIO::Direction& direction = Direction::Out);
 
     class exception : public std::exception {
     public:
